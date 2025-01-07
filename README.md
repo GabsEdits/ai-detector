@@ -35,6 +35,32 @@ deno run -N api/mod.ts
 curl https://ai-detector-api.deno.dev/This%20is%20an%20example%20text%20to%20analyze%20using%20the%20API
 ```
 
+## Webapp
+
+The webapp is available at [ai-detector.gxbs.dev](https://ai-detector.gxbs.dev), and is built using [Fresh](https://fresh.deno.dev).
+
+### Installation
+
+(After cloning the repository, and installing Deno, and being in the root directory of the project)
+
+```
+deno i
+```
+
+### Running the Webapp
+
+Development Server (with auto-reload):
+
+```bash
+deno run start
+```
+
+Build:
+
+```bash
+deno run build
+```
+
 ## License
 
 This project is open source and available under the [MIT License](LICENSE.txt).
