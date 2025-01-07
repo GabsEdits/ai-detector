@@ -11,7 +11,7 @@ export default function Main() {
     const text = target.value;
 
     try {
-      const response = await fetch(`http://localhost:8001/${encodeURIComponent(text)}`);
+      const response = await fetch(`https://ai-detector-api.deno.dev/${encodeURIComponent(text)}`);
       const data = await response.json();
       setProgress(data.aiProbability);
     } catch (error) {
