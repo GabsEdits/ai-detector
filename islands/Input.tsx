@@ -1,7 +1,7 @@
 import { useEffect } from "preact/hooks";
 
 export default function Input(
-  { onChange }: { onChange: (event: Event) => void },
+  { onChange, onClear }: { onChange: (event: Event) => void, onClear: () => void },
 ) {
   const useHumanSampleText = () => {
     const humanSampleText =
@@ -53,6 +53,7 @@ export default function Input(
     }
 
     console.log("Textarea cleared");
+    onClear();
   };
 
   useEffect(() => {

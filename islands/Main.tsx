@@ -19,6 +19,10 @@ export default function Main() {
     }
   };
 
+  const handleClearText = () => {
+    setProgress(0);
+  };
+
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -64,7 +68,7 @@ export default function Main() {
     <div class={`flex flex-col py-10 gap-4 ${isDarkMode ? 'dark' : ''}`}>
       <h1 class="text-3xl font-serif text-center">AI Detector</h1>
 
-      <Input onChange={handleInputChange} />
+      <Input onChange={handleInputChange} onClear={handleClearText} />
 
       <div class="flex flex-col gap-6 items-center justify-center bg-zinc-100 dark:bg-zinc-900 py-9 rounded-2xl">
         <div class="relative size-48">
