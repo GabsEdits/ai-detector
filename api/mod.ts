@@ -11,7 +11,7 @@ app.use("*", (c, next) => {
 
 function analyzeText(text: string) {
   const charactersCount = text.length;
-  const words = text.split(/\s+/).filter((word) => word !== "");
+  const words = text.split(/\s+/).filter(Boolean);
   const wordsCount = words.length;
   const sentences = text.split(/[.!?]+/).filter((sentence) => sentence.trim() !== "");
   const sentencesCount = sentences.length;
@@ -55,10 +55,10 @@ function analyzeText(text: string) {
     /moreover/i
   ];
   const heuristicMatches = heuristicPatterns.some((pattern) => pattern.test(text));
-  let aiProbability = heuristicMatches ? 82 : 18;
+  let aiProbability = heuristicMatches ? 41 : 9;
 
-  const sentenceComplexity = varianceSentenceLength > 5 ? 12 : -8;
-  const repetitionCheck = checkRepetition(text) ? 11 : -9;
+  const sentenceComplexity = varianceSentenceLength > 5 ? 6 : -4;
+  const repetitionCheck = checkRepetition(text) ? 5 : -4;
   aiProbability += sentenceComplexity + repetitionCheck;
   aiProbability = Math.max(0, Math.min(100, aiProbability));
 
@@ -98,13 +98,30 @@ app.get("/full/:text", (c) => {
   return c.json(analysis);
 });
 
-app.notFound((c) => c.text("Not Found", 404));
+app.get("/summary/:text", (c) => {
+  const text = getTextParam(c);
+  const analysis = analyzeText(text);
+  return c.json({
+    charactersCount: analysis.charactersCount,
+    wordsCount: analysis.wordsCount,
+    sentencesCount: analysis.sentencesCount,
+    uniqueWordCount: analysis.uniqueWordCount,
+  });
+});
 
-app.get("/:text", (c) => {
+app.get("/ai-probability/:text", (c) => {
   const text = getTextParam(c);
   const analysis = analyzeText(text);
   return c.json({ aiProbability: analysis.aiProbability });
 });
+
+app.post("/analyze", async (c) => {
+  const { text } = await c.req.json();
+  const analysis = analyzeText(text);
+  return c.json(analysis);
+});
+
+app.notFound((c) => c.text("Not Found", 404));
 
 Deno.serve({ port: 8001 }, app.fetch);
 
