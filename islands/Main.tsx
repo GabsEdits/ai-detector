@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "preact/hooks";
+import { useEffect, useRef, useState } from "preact/hooks";
 import Input from "./Input.tsx";
 
 export default function Main() {
@@ -12,7 +12,9 @@ export default function Main() {
 
     try {
       const url = "https://ai-detector-api.deno.dev/";
-      const response = await fetch(`${url}ai-probability/${encodeURIComponent(text)}`);
+      const response = await fetch(
+        `${url}ai-probability/${encodeURIComponent(text)}`,
+      );
       const data = await response.json();
       setProgress(data.aiProbability);
     } catch (error) {
@@ -44,7 +46,13 @@ export default function Main() {
     // Draw progress arc
     const endAngle = (progress / 100) * 2 * Math.PI;
     ctx.beginPath();
-    ctx.arc(radius, radius, radius - lineWidth / 2, -Math.PI / 2, endAngle - Math.PI / 2);
+    ctx.arc(
+      radius,
+      radius,
+      radius - lineWidth / 2,
+      -Math.PI / 2,
+      endAngle - Math.PI / 2,
+    );
     ctx.lineWidth = lineWidth;
     ctx.strokeStyle = progress < 60 ? "#16a34a" : "#dc2626"; // green-600 or red-600
     ctx.stroke();
@@ -66,17 +74,29 @@ export default function Main() {
   }, []);
 
   return (
-    <div class={`flex flex-col py-10 gap-4 ${isDarkMode ? 'dark' : ''}`}>
+    <div class={`flex flex-col py-10 gap-4 ${isDarkMode ? "dark" : ""}`}>
       <h1 class="text-3xl font-serif text-center">AI Detector</h1>
 
       <Input onChange={handleInputChange} onClear={handleClearText} />
 
       <div class="flex flex-col gap-6 items-center justify-center bg-zinc-100 dark:bg-zinc-900 py-9 rounded-2xl">
         <div class="relative size-48">
-          <canvas ref={canvasRef} width="192" height="192" class="absolute inset-0"></canvas>
+          <canvas
+            ref={canvasRef}
+            width="192"
+            height="192"
+            class="absolute inset-0"
+          >
+          </canvas>
 
           <div class="absolute inset-0 flex items-center justify-center">
-            <span class={`text-4xl font-serif font-bold ${progress < 60 ? 'text-green-600' : 'text-red-600'}`}>{progress}%</span>
+            <span
+              class={`text-4xl font-serif font-bold ${
+                progress < 60 ? "text-green-600" : "text-red-600"
+              }`}
+            >
+              {progress}%
+            </span>
           </div>
         </div>
         <p class="text-3xl font-serif font-bold ml-4">likely AI-generated</p>

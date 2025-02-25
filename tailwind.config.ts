@@ -11,7 +11,7 @@ export default {
         serif: ["Instrument Serif", "serif"],
       },
       borderWidth: {
-        '12': '12px',
+        "12": "12px",
       },
     },
   },

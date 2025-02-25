@@ -5,15 +5,25 @@
 
 ## Algorithm
 
-The algorithm is based on a comprehensive analysis of the text, including character count, word count, sentence count, unique word count, and average sentence length. It calculates word frequency, identifies the most used word, and evaluates sentence lengths to determine mean and variance. The type-token ratio is computed to assess lexical diversity. Additionally, the algorithm generates bigrams and trigrams to analyze word pairings and triplets. Heuristic patterns are checked to identify common AI-generated text phrases. The AI probability is adjusted based on sentence complexity and repetition checks, resulting in a final AI probability score.
+The algorithm is based on a comprehensive analysis of the text, including
+character count, word count, sentence count, unique word count, and average
+sentence length. It calculates word frequency, identifies the most used word,
+and evaluates sentence lengths to determine mean and variance. The type-token
+ratio is computed to assess lexical diversity. Additionally, the algorithm
+generates bigrams and trigrams to analyze word pairings and triplets. Heuristic
+patterns are checked to identify common AI-generated text phrases. The AI
+probability is adjusted based on sentence complexity and repetition checks,
+resulting in a final AI probability score.
 
 ## API
 
-The API is available at [ai-detector-api.deno.dev](https://ai-detector-api.deno.dev).
+The API is available at
+[ai-detector-api.deno.dev](https://ai-detector-api.deno.dev).
 
 ### Installation
 
-(After cloning the repository, and installing Deno, and being in the root directory of the project)
+(After cloning the repository, and installing Deno, and being in the root
+directory of the project)
 
 ### Running the API
 
@@ -23,8 +33,7 @@ deno run -N api/mod.ts
 
 ### Endpoints
 
-> ![NOTE]
-> Replace `:text` with the text you want to analyze.
+> ![NOTE] Replace `:text` with the text you want to analyze.
 
 - `GET
 
@@ -36,11 +45,13 @@ curl https://ai-detector-api.deno.dev/This%20is%20an%20example%20text%20to%20ana
 
 ## Webapp
 
-The webapp is available at [ai-detector.gxbs.dev](https://ai-detector.gxbs.dev), and is built using [Fresh](https://fresh.deno.dev).
+The webapp is available at [ai-detector.gxbs.dev](https://ai-detector.gxbs.dev),
+and is built using [Fresh](https://fresh.deno.dev).
 
 ### Installation
 
-(After cloning the repository, and installing Deno, and being in the root directory of the project)
+(After cloning the repository, and installing Deno, and being in the root
+directory of the project)
 
 ```
 deno i

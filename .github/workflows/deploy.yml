@@ -32,5 +32,3 @@ jobs:
           project: "ai-detector"
           entrypoint: "main.ts"
           root: "."
-          
-          

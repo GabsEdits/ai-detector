@@ -13,11 +13,15 @@ function analyzeText(text: string) {
   const charactersCount = text.length;
   const words = text.split(/\s+/).filter(Boolean);
   const wordsCount = words.length;
-  const sentences = text.split(/[.!?]+/).filter((sentence) => sentence.trim() !== "");
+  const sentences = text.split(/[.!?]+/).filter((sentence) =>
+    sentence.trim() !== ""
+  );
   const sentencesCount = sentences.length;
   const uniqueWords = new Set(words.map((word) => word.toLowerCase()));
   const uniqueWordCount = uniqueWords.size;
-  const averageSentenceLength = sentencesCount > 0 ? wordsCount / sentencesCount : 0;
+  const averageSentenceLength = sentencesCount > 0
+    ? wordsCount / sentencesCount
+    : 0;
 
   const wordFrequency = words.reduce((acc, word) => {
     const lowerWord = word.toLowerCase();
@@ -29,10 +33,15 @@ function analyzeText(text: string) {
     b[1] > a[1] ? b : a
   );
 
-  const sentenceLengths = sentences.map((sentence) => sentence.split(/\s+/).filter(Boolean).length);
-  const meanSentenceLength = sentenceLengths.reduce((a, b) => a + b, 0) / sentenceLengths.length || 0;
-  const varianceSentenceLength =
-    sentenceLengths.reduce((a, b) => a + Math.pow(b - meanSentenceLength, 2), 0) / sentenceLengths.length || 0;
+  const sentenceLengths = sentences.map((sentence) =>
+    sentence.split(/\s+/).filter(Boolean).length
+  );
+  const meanSentenceLength =
+    sentenceLengths.reduce((a, b) => a + b, 0) / sentenceLengths.length || 0;
+  const varianceSentenceLength = sentenceLengths.reduce(
+        (a, b) => a + Math.pow(b - meanSentenceLength, 2),
+        0,
+      ) / sentenceLengths.length || 0;
 
   const typeTokenRatio = wordsCount > 0 ? uniqueWordCount / wordsCount : 0;
 
@@ -52,9 +61,11 @@ function analyzeText(text: string) {
     /it is important to note/i,
     /as mentioned above/i,
     /thus/i,
-    /moreover/i
+    /moreover/i,
   ];
-  const heuristicMatches = heuristicPatterns.some((pattern) => pattern.test(text));
+  const heuristicMatches = heuristicPatterns.some((pattern) =>
+    pattern.test(text)
+  );
   let aiProbability = heuristicMatches ? 41 : 9;
 
   const sentenceComplexity = varianceSentenceLength > 5 ? 6 : -4;
@@ -89,7 +100,7 @@ function checkRepetition(text: string): boolean {
   for (const word of words) {
     wordCounts.set(word, (wordCounts.get(word) || 0) + 1);
   }
-  return [...wordCounts.values()].some(count => count > 2);
+  return [...wordCounts.values()].some((count) => count > 2);
 }
 
 app.get("/full/:text", (c) => {

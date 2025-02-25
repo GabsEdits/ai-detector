@@ -1,7 +1,10 @@
 import { useEffect } from "preact/hooks";
 
 export default function Input(
-  { onChange, onClear }: { onChange: (event: Event) => void, onClear: () => void },
+  { onChange, onClear }: {
+    onChange: (event: Event) => void;
+    onClear: () => void;
+  },
 ) {
   const useHumanSampleText = () => {
     const humanSampleText =
