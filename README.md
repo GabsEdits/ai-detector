@@ -26,8 +26,7 @@ deno run -N api/mod.ts
 > ![NOTE]
 > Replace `:text` with the text you want to analyze.
 
-- `/:text` - Analyze the text and return the AI probability score in JSON format.
-- `/full/:text` - Return all the statistics in JSON format (including: character count, word count, sentence count, unique word count, average sentence length, word frequency, most used word, type-token ratio, bigrams, trigrams, AI probability score).
+- `GET
 
 ### Example
 
